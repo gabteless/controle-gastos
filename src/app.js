@@ -181,4 +181,62 @@ document.addEventListener('DOMContentLoaded', () => {
       feedback.className = 'form-feedback';
     }, 3000);
   }
+
+  // ===== Integração com API de Cotação (AwesomeAPI) =====
+  const cotacaoContainer = document.getElementById('cotacao-container');
+
+  function renderizarCotacaoCard() {
+    if (!cotacaoContainer) return;
+    cotacaoContainer.innerHTML =
+      '<div class="card cotacao-card">' +
+        '<div class="cotacao-header">' +
+          '<h2 class="section-title">💱 Cotação do Dólar</h2>' +
+          '<button class="btn-cotacao" id="btn-buscar-cotacao">Buscar Cotação Atual</button>' +
+        '</div>' +
+        '<div class="cotacao-body" id="cotacao-body">' +
+          '<p class="empty-hint">Clique no botão para buscar a cotação atual do dólar (USD)</p>' +
+        '</div>' +
+      '</div>';
+
+    document.getElementById('btn-buscar-cotacao').addEventListener('click', buscarCotacao);
+  }
+
+  async function buscarCotacao() {
+    var cotacaoBody = document.getElementById('cotacao-body');
+    cotacaoBody.innerHTML = '<p class="loading">Buscando cotação...</p>';
+
+    try {
+      var response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL');
+      if (!response.ok) {
+        throw new Error('Erro na requisição: ' + response.status);
+      }
+      var data = await response.json();
+      var cotacao = data.USDBRL;
+      var valorCompra = parseFloat(cotacao.bid);
+      var totalBRL = GastosManager.calcularTotal(gastos);
+      var totalUSD = totalBRL / valorCompra;
+
+      cotacaoBody.innerHTML =
+        '<div class="cotacao-info">' +
+          '<div class="cotacao-item">' +
+            '<span class="cotacao-label">Dólar (compra)</span>' +
+            '<span class="cotacao-valor">R$ ' + valorCompra.toFixed(4) + '</span>' +
+          '</div>' +
+          '<div class="cotacao-item">' +
+            '<span class="cotacao-label">Dólar (venda)</span>' +
+            '<span class="cotacao-valor">R$ ' + parseFloat(cotacao.ask).toFixed(4) + '</span>' +
+          '</div>' +
+          '<div class="cotacao-item destaque">' +
+            '<span class="cotacao-label">Seus gastos em USD</span>' +
+            '<span class="cotacao-valor usd">$ ' + totalUSD.toFixed(2) + '</span>' +
+          '</div>' +
+          '<p class="cotacao-meta">Atualizado em: ' + cotacao.create_date + '</p>' +
+        '</div>';
+    } catch (erro) {
+      cotacaoBody.innerHTML =
+        '<p class="cotacao-erro">❌ Não foi possível buscar a cotação. Verifique sua conexão.</p>';
+    }
+  }
+
+  renderizarCotacaoCard();
 });

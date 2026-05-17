@@ -2,9 +2,12 @@
 
 > Aplicação web simples e gratuita para gerenciamento de gastos pessoais, voltada a pessoas de baixa renda e microempreendedores que precisam organizar suas finanças no dia a dia.
 
-![Version](https://img.shields.io/badge/versão-1.0.0-blue)
+🔗 **[Acesse a aplicação online](https://gabteless.github.io/controle-gastos/)**
+
+[![CI](https://github.com/gabteless/controle-gastos/actions/workflows/ci.yml/badge.svg)](https://github.com/gabteless/controle-gastos/actions/workflows/ci.yml)
+![Version](https://img.shields.io/badge/versão-1.1.0-blue)
 ![License](https://img.shields.io/badge/licença-MIT-green)
-![Tests](https://img.shields.io/badge/testes-7%20passando-brightgreen)
+![Tests](https://img.shields.io/badge/testes-8%20passando-brightgreen)
 
 ---
 
@@ -39,6 +42,8 @@ O **Controle de Gastos Pessoais** é uma aplicação web leve, 100% gratuita e q
 | 📊 Dashboard | Total geral e totais por categoria |
 | 🔍 Filtro | Filtrar gastos por categoria |
 | 💾 Persistência | Dados salvos automaticamente via localStorage |
+| 💱 Cotação USD | Consulta cotação do dólar em tempo real (AwesomeAPI) |
+| 🔄 Conversão | Converte total de gastos de BRL para USD |
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -56,13 +61,15 @@ controle-gastos/
 ├── src/
 │   ├── index.html          # Interface principal (GUI)
 │   ├── style.css            # Estilização
-│   ├── app.js               # Lógica da interface (DOM)
+│   ├── app.js               # Lógica da interface (DOM) + integração API
 │   └── gastos.js            # Lógica de negócio (testável)
 ├── tests/
-│   └── gastos.test.js       # Testes automatizados
+│   ├── gastos.test.js       # Testes unitários
+│   └── api.test.js          # Teste de integração (API)
 ├── .github/
 │   └── workflows/
-│       └── ci.yml           # Pipeline CI
+│       ├── ci.yml           # Pipeline CI
+│       └── deploy.yml       # Deploy GitHub Pages
 ├── package.json             # Manifesto + dependências + versão
 ├── .eslintrc.json           # Configuração do ESLint
 ├── .gitignore               # Arquivos ignorados pelo Git
@@ -125,7 +132,7 @@ PASS tests/gastos.test.js
     ✓ deve remover um gasto existente
     ✓ deve retornar erro ao tentar remover gasto inexistente
 
-Tests: 7 passed, 7 total
+Tests: 8 passed, 8 total
 ```
 
 ## 🔍 Executar o Lint
@@ -142,7 +149,7 @@ npm run lint:fix
 
 ## 📋 Versão Atual
 
-**v1.0.0** — Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico de mudanças.
+**v1.1.0** — Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico de mudanças.
 
 O projeto segue o padrão de [Versionamento Semântico](https://semver.org/lang/pt-BR/) (`MAJOR.MINOR.PATCH`).
 
@@ -153,6 +160,7 @@ O projeto segue o padrão de [Versionamento Semântico](https://semver.org/lang/
 ## 🔗 Links
 
 - **Repositório**: [github.com/gabteless/controle-gastos](https://github.com/gabteless/controle-gastos)
+- **Aplicação online**: [gabteless.github.io/controle-gastos](https://gabteless.github.io/controle-gastos/)
 
 ## 📄 Licença
 
