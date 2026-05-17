@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main, entrega-intermediaria]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar Linting (ESLint)
+        run: npm run lint
+
+      - name: Executar Testes (Jest)
+        run: npm test

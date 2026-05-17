@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Controle de Gastos Pessoais — Gerencie suas finanças de forma simples e gratuita.">
+  <title>Controle de Gastos Pessoais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">💰</span>
+        <h1>Controle de Gastos</h1>
+      </div>
+      <p class="subtitle">Gerencie suas finanças de forma simples e inteligente</p>
+    </div>
+  </header>
+  <main class="container">
+    <section class="dashboard" aria-label="Resumo financeiro">
+      <div class="card card-total" id="card-total">
+        <div class="card-icon">📊</div>
+        <div class="card-body">
+          <h2 class="card-label">Total de Gastos</h2>
+          <p class="total-value" id="total-geral">R$ 0,00</p>
+        </div>
+        <div class="card-badge" id="contador-gastos">0 itens</div>
+      </div>
+      <div class="card card-categorias" id="card-categorias">
+        <div class="card-icon">📁</div>
+        <div class="card-body">
+          <h2 class="card-label">Por Categoria</h2>
+          <div class="categorias-resumo" id="categorias-resumo">
+            <p class="empty-hint">Adicione gastos para ver o resumo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="form-section" aria-label="Adicionar novo gasto">
+      <div class="card card-form">
+        <h2 class="section-title">✏️ Novo Gasto</h2>
+        <form id="form-gasto" autocomplete="off">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="input-descricao">Descrição</label>
+              <input type="text" id="input-descricao" placeholder="Ex: Almoço, Uber, Conta de luz..." required>
+            </div>
+            <div class="form-group">
+              <label for="input-valor">Valor (R$)</label>
+              <input type="number" id="input-valor" placeholder="0,00" min="0.01" step="0.01" required>
+            </div>
+            <div class="form-group">
+              <label for="input-categoria">Categoria</label>
+              <select id="input-categoria" required>
+                <option value="">Selecione...</option>
+                <option value="Alimentação">🍔 Alimentação</option>
+                <option value="Transporte">🚗 Transporte</option>
+                <option value="Moradia">🏠 Moradia</option>
+                <option value="Saúde">💊 Saúde</option>
+                <option value="Educação">📚 Educação</option>
+                <option value="Lazer">🎮 Lazer</option>
+                <option value="Outros">📦 Outros</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="input-data">Data</label>
+              <input type="date" id="input-data" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" id="btn-adicionar">
+            <span>＋</span> Adicionar Gasto
+          </button>
+        </form>
+        <div class="form-feedback" id="form-feedback" role="alert"></div>
+      </div>
+    </section>
+    <section class="list-section" aria-label="Lista de gastos">
+      <div class="card card-lista">
+        <div class="list-header">
+          <h2 class="section-title">📋 Gastos Registrados</h2>
+          <select id="filtro-categoria" aria-label="Filtrar por categoria">
+            <option value="todas">Todas as categorias</option>
+          </select>
+        </div>
+        <div class="lista-gastos" id="lista-gastos">
+          <p class="empty-message">Nenhum gasto registrado ainda. Comece adicionando acima! 🚀</p>
+        </div>
+      </div>
+    </section>
+    <div id="cotacao-container"></div>
+  </main>
+  <footer class="footer">
+    <p>Controle de Gastos Pessoais &mdash; v1.0.0 &mdash; Feito por Gabriel</p>
+  </footer>
+  <script src="gastos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
