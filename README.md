@@ -148,7 +148,7 @@ O projeto segue o padrão de [Versionamento Semântico](https://semver.org/lang/
 
 ## 👤 Autor
 
-**Gabriel** — Estudante de Engenharia de Software
+**Gabriel** — Estudante de Análise e Desenvolvimento de Sistemas
 
 ## 🔗 Links
 
